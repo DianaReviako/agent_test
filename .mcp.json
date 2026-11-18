@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "github": {
+      "type": "stdio",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        ".github/scripts/start-github-mcp.ps1"
+      ],
+      "cwd": ".",
+      "tools": ["*"]
+    }
+  }
+}
