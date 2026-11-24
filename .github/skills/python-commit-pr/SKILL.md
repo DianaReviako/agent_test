@@ -30,8 +30,8 @@ List changed files as in the `python-code-review` skill (`git diff --name-only H
 
 Run each git command as its own tool call.
 
-1. Check the current branch with `git branch --show-current`. Do not commit on `main` or `master`. Create a branch with `git switch -c review/<short-topic>` from the current HEAD.
-2. Run `git log origin/main..HEAD --oneline`. If it lists commits you did not make in this session, tell the user and ask before pushing.
+1. Run `git fetch origin main`, then create the branch from the latest main: `git switch -c review/<short-topic> origin/main`. Never commit on `main` or `master`, and never branch from the current HEAD. Uncommitted changes carry over to the new branch.
+2. If the switch is refused because local changes conflict with `origin/main`, stop and tell the user; do not stash, reset, or force the switch.
 3. Stage by explicit path: `git add <file> <file>`. Never use `git add .`, `-A`, or `-u`. Stage only the changed `*.py` files, not configuration or secrets.
 4. Commit with a short imperative message that describes the change: `git commit -m "<message>"`.
 5. Push with `git push -u origin <branch>`. Never force-push.
