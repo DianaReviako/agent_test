@@ -39,7 +39,7 @@ Skip anything that is speculative, preference-only, or already enforced by tooli
 - Fix a finding only when the fix is clear, local, and behavior-preserving apart from the bug itself. Edit the file directly with the edit tool so VS Code shows **Keep** and **Undo** on the change.
 - Make the smallest edit that resolves the finding. Do not reformat or touch unrelated lines.
 - If the correct fix needs a product or design decision, report the finding in chat without editing and ask a question.
-- Do not run `git commit`, `checkout`, `reset`, `restore`, `stash`, or similar while edits are pending; they would discard the pending Keep/Undo state.
+- Do not run `git commit`, `checkout`, `reset`, `restore`, `stash`, or similar while edits are pending, unless the user has typed `commit` (see the `python-commit-pr` skill); they would discard the pending Keep/Undo state.
 
 ## Reporting
 
