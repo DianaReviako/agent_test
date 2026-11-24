@@ -1,15 +1,20 @@
+from collections.abc import Iterable
 from datetime import datetime
+from typing import Any
+
+DEFAULT_PERMISSION = "guest"
+READ_PERMISSION = "read"
 
 
-def create_test_session(user_id, permissions=None):
-    if permissions is None:
-        permissions = ['guest']
-    else:
-        permissions = list(permissions)
-    permissions.append('read')
+def create_test_session(
+    user_id: str | int, permissions: Iterable[str] | None = None
+) -> dict[str, Any]:
+    permissions = [DEFAULT_PERMISSION] if permissions is None else list(permissions)
+    if READ_PERMISSION not in permissions:
+        permissions.append(READ_PERMISSION)
 
     return {
-        'user_id': user_id,
-        'permissions': permissions,
-        'created_at': datetime.now(),
+        "user_id": user_id,
+        "permissions": permissions,
+        "created_at": datetime.now(),
     }
